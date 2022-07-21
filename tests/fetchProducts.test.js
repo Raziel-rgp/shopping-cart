@@ -7,15 +7,18 @@ describe('1 - Teste a função fetchProducts', () => {
     expect(typeof fetchProducts).toEqual('function');
   });
   it('teste se a funcao é chamada quando passado um valor chamado computador', () => {
-    fetchProducts('computador')
+    fetchProducts('computador');
     expect(fetch).toHaveBeenCalledTimes(1);
   });
   it('teste se a funcao é chamada quando passado um valor chamado computador o link esta correto', async () => {
-    const nameProduct = 'computador'
-    const url = `https://api.mercadolibre.com/sites/MLB/search?q=${nameProduct}`
-    await fetchProducts(nameProduct)
+    const nameProduct = 'computador';
+    const url = `https://api.mercadolibre.com/sites/MLB/search?q=${nameProduct}`;
+    await fetchProducts(nameProduct);
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(url);
     });
-  
+  it('Teste se o retorno da função: fetchProduts com argumento: computador retorna um objeto com valores iguais do objeto da função: computadorSearch', async () => {
+    const nameProduct = 'computador';
+    expect(await fetchProducts(nameProduct)).toEqual(computadorSearch);
+  });
 });
