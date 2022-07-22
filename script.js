@@ -1,3 +1,5 @@
+const items = document.querySelector('.items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -25,15 +27,11 @@ const createProductItemElement = ({ sku, name, image }) => {
 };
 
 const products = async () => {
-  const items = document.querySelector('.items');
-  const { results } = await fetchProducts('computador');
-  console.log(results);
-  results.forEach(({ id, title, thumbnail }) => {
-    const obj = { sku: id, name: title, image: thumbnail };
-    console.log(obj);
-    const creatItens = createProductImageElement(obj);
-    console.log(creatItens);
-    items.appendChild(creatItens);
+  const busca = await fetchProducts('computador');
+  const { results } = busca;
+  results.forEach((result) => {
+    const { sku: id, name: title, image: thumbnail } = result;
+    items.appendChild(createProductImageElement({ sku: id, name: title, image: thumbnail }));
   });
 };
 

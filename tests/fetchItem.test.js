@@ -4,11 +4,11 @@ const item = require('../mocks/item');
 
 describe('2 - Teste a função fetchItem', () => {
   it('Teste se fetchItem é uma função', () => {
-    expect(typeof fetchItem()).toBe(Function);
+    expect(typeof fetchItem).toBe('function');
   });
   it('Teste se a função fetch é chamada quando passado algum parâmetro', () => {
     fetchItem('MLB1615760527')
-    expect(fetch).toHaveBeenCalledTimes();
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
   it('Teste se o endpoint contem o parametro que foi passado para a função', async () => {
     const idParam = 'MLB1615760527';
