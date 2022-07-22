@@ -14,7 +14,7 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
-const createProductItemElement = ({ sku, name, image }) => {
+const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
   const section = document.createElement('section');
   section.className = 'item';
 
@@ -30,8 +30,7 @@ const products = async () => {
   const busca = await fetchProducts('computador');
   const { results } = busca;
   results.forEach((result) => {
-    const { sku: id, name: title, image: thumbnail } = result;
-    items.appendChild(createProductImageElement({ sku: id, name: title, image: thumbnail }));
+    items.appendChild(createProductItemElement(result));
   });
 };
 
