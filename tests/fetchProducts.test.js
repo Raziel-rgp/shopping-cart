@@ -21,4 +21,7 @@ describe('1 - Teste a função fetchProducts', () => {
     const nameProduct = 'computador';
     expect(await fetchProducts(nameProduct)).toEqual(computadorSearch);
   });
+  it('Teste se ao não ser passado nenhum valor, é retornado um erro', async () => {
+    expect(await fetchProducts()).toEqual('Deu erro familia')
+  });
 });

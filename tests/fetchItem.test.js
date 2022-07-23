@@ -20,4 +20,7 @@ describe('2 - Teste a função fetchItem', () => {
     const idParam = 'MLB1615760527';
     expect(await fetchItem(idParam)).toEqual(item);
   });
+  it('Testa se ao não ser passado nenhum valor returna Devo ter feito algo errado...', async () => {
+    expect(await fetchItem()).toEqual('Devo ter feito algo errado...')
+  })
 });
