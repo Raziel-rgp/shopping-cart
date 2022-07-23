@@ -36,11 +36,11 @@ const products = async () => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = (event) => {
-  // coloque seu código aqui
+const cartItemClickListener = async (event) => {
+  
 };
 
-const createCartItemElement = ({ sku, name, salePrice }) => {
+const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
@@ -48,6 +48,18 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = () => {
-  products();
+const searchItemById = async (event) => {  
+  const itemId = getSkuFromProductItem(event.target.parentNode);
+  const produtoInfo = await fetchItem(itemId);
+  const cartItens = document.querySelector('.cart__items');
+  cartItens.append(createCartItemElement(produtoInfo));
+};
+const getItem = async () => {
+  const procurador = document.querySelectorAll('.item__add');
+  procurador.forEach((item) => item.addEventListener('click', searchItemById));
+};
+
+window.onload = async () => {
+  await products();
+  await getItem();
 };

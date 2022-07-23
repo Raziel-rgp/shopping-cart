@@ -1,6 +1,6 @@
-const fetchItem = async (item) => {
+const fetchItem = async (itemID) => {
   try {
-    const linkBao = `https://api.mercadolibre.com/items/${item}`;
+    const linkBao = `https://api.mercadolibre.com/items/${itemID}`;
     const prometaMe = await fetch(linkBao);
     const itens = await prometaMe.json();
     return itens;
