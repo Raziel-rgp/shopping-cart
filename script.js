@@ -36,8 +36,11 @@ const products = async () => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = async (event) => {
-  
+const cartItemClickListener = async () => {
+  const elemento = document.querySelector('.cart__items');
+  while (elemento.firstChild) {
+  elemento.removeChild(elemento.firstChild);
+}
 };
 
 const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
@@ -47,7 +50,6 @@ const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
-
 const searchItemById = async (event) => {  
   const itemId = getSkuFromProductItem(event.target.parentNode);
   const produtoInfo = await fetchItem(itemId);
@@ -57,6 +59,8 @@ const searchItemById = async (event) => {
 const getItem = async () => {
   const procurador = document.querySelectorAll('.item__add');
   procurador.forEach((item) => item.addEventListener('click', searchItemById));
+  const botaoCart = document.querySelector('.empty-cart');
+  botaoCart.addEventListener('click', cartItemClickListener);
 };
 
 window.onload = async () => {

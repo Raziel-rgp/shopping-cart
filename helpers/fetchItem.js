@@ -8,7 +8,6 @@ const fetchItem = async (itemID) => {
     return 'Devo ter feito algo errado...';
   }
 };
-fetchItem('MLB1615760527');
 
 if (typeof module !== 'undefined') {
   module.exports = {
