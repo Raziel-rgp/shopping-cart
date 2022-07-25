@@ -1,6 +1,5 @@
 const saveCartItems = (ItensCar) => {
-  const setItem = localStorage.setItem('itensCarrinho', JSON.stringify(ItensCar));
-  return setItem;
+  localStorage.setItem('carItems', JSON.stringify(ItensCar));
 };
 
 if (typeof module !== 'undefined') {
