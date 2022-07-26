@@ -21,10 +21,10 @@ const loading = () => {
 };
 const saveCarrinhoStorage = () => {
   const lista2 = document.querySelector('.cart__items');
-  console.log(lista2)
-  //lista2.forEach((item) => {
-    //item.innerHTM
-  //})
+  console.log(lista2);
+  // lista2.forEach((item) => {
+    // item.innerHTM
+  // })
   const lista = elemento.innerHTML;
   saveCartItems(lista);
 };
