@@ -20,8 +20,13 @@ const loading = () => {
   container.appendChild(cr);
 };
 const saveCarrinhoStorage = () => {
-  const carrinho = elemento.innerHTML;
-  saveCartItems(carrinho);
+  const lista2 = document.querySelector('.cart__items');
+  console.log(lista2)
+  //lista2.forEach((item) => {
+    //item.innerHTM
+  //})
+  const lista = elemento.innerHTML;
+  saveCartItems(lista);
 };
 const removeLoading = () => {
   const cr = document.querySelector('.loading');
@@ -55,7 +60,7 @@ const cartCleaner = async () => {
   while (elemento.firstChild) {
   elemento.removeChild(elemento.firstChild);
   }
-  storage.removeItem();
+  saveCarrinhoStorage();
 };
 
 const cartItemCleaner = async () => {
@@ -71,13 +76,13 @@ const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemCleaner);
+  saveCarrinhoStorage();
   return li;
 };
 const searchItemById = async (event) => {  
   const itemId = getSkuFromProductItem(event.target.parentNode);
   const produtoInfo = await fetchItem(itemId);
-  const cartItens = document.querySelector('.cart__items');
-  cartItens.append(createCartItemElement(produtoInfo));
+  elemento.append(createCartItemElement(produtoInfo));
 };
 const getItem = async () => {
   const procurador = document.querySelectorAll('.item__add');
@@ -86,12 +91,14 @@ const getItem = async () => {
   botaoCart.addEventListener('click', cartCleaner);
 };
 const loadLocalStorage = () => {
-  const load = getSavedCartItems('cartItems');
-  cartItems.innerHTML = load;
-  const listaItensCarrinho = document.querySelectorAll('li');
-  listaItensCarrinho.forEach((item) => {
-    item.addEventListener('click', cartItemCleaner);
-  });
+  const load = getSavedCartItems('carItems');
+  if (load !== undefined) {
+    elemento.innerHTML = load;
+    const listaItensCarrinho = document.querySelectorAll('li');
+    listaItensCarrinho.forEach((item) => {
+      item.addEventListener('click', cartItemCleaner);
+    });
+  }
 };
 
 window.onload = async () => {
