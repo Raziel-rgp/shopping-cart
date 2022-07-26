@@ -21,11 +21,6 @@ const loading = () => {
 };
 const saveCarrinhoStorage = () => {
   const lista2 = document.querySelector('.cart__items').innerHTML;
-  console.log(lista2);
-  // lista2.forEach((item) => {
-    // item.innerHTM
-  // })
-  const lista = elemento.innerHTML;
   saveCartItems(lista2);
 };
 const removeLoading = () => {
@@ -92,7 +87,6 @@ const getItem = async () => {
 };
 const loadLocalStorage = () => {
   const load = getSavedCartItems('carItems');
-  console.log(load)
   if (load !== undefined) {
     elemento.innerHTML = load;
     const listaItensCarrinho = document.querySelectorAll('li');
