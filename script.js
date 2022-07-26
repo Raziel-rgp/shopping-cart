@@ -58,11 +58,8 @@ const cartCleaner = async () => {
   saveCarrinhoStorage();
 };
 
-const cartItemCleaner = async () => {
-  const no = document.querySelector('.cart__item');
-  if (no.parentNode) {
-    no.parentNode.removeChild(no);
-  }
+const cartItemCleaner = async (event) => {
+  event.target.remove();
   saveCarrinhoStorage();
 };
 
@@ -87,13 +84,12 @@ const getItem = async () => {
 };
 const loadLocalStorage = () => {
   const load = getSavedCartItems('carItems');
-  if (load !== undefined) {
-    elemento.innerHTML = load;
-    const listaItensCarrinho = document.querySelectorAll('li');
-    listaItensCarrinho.forEach((item) => {
-      item.addEventListener('click', cartItemCleaner);
-    });
-  }
+  elemento.innerHTML = load;
+  const listaItensCarrinho = document.querySelectorAll('li');
+  listaItensCarrinho.forEach((item) => {
+    item.addEventListener('click', cartItemCleaner);
+  });
+
 };
 
 window.onload = async () => {
