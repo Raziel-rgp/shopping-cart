@@ -89,6 +89,8 @@ const loadLocalStorage = () => {
   listaItensCarrinho.forEach((item) => {
     item.addEventListener('click', cartItemCleaner);
   });
+  elemento.removeChild(elemento.firstChild);
+  elemento.removeChild(elemento.lastChild);
 };
 
 window.onload = async () => {
